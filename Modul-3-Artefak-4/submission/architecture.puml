@@ -1,0 +1,25 @@
+@startuml
+title Payment Event Stream Architecture
+
+actor Producer
+queue "dpw3-events\n3 partitions" as Topic
+rectangle "Consumer Group: dpw3-case" as Group {
+    component "Consumer C1" as C1
+    component "Consumer C2" as C2
+}
+rectangle "Processing\nmanual synchronous commit" as Processing
+database "Committed offsets" as Offset
+
+Producer --> Topic : event key = order_id
+Topic --> C1 : assigned partitions
+Topic --> C2 : assigned partitions
+C1 --> Processing : ordered events per partition
+C2 --> Processing : ordered events per partition
+Processing --> Offset : commit after processing
+
+note bottom of Topic
+The same order_id maps to the same partition,
+preserving order for events of that order.
+end note
+
+@enduml
