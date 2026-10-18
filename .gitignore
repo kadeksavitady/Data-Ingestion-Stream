@@ -2,3 +2,9 @@
 **/__pycache__/
 *.py[cod]
 **/desktop.ini
+# Files intentionally kept locally, not in the repository
+/3324600033_Data Ingestion.docx
+/3324600033_Data Ingestion.pdf
+/Modul 3.pdf
+/Modul-3-Artefak-3.zip
+/Modul-3-Artefak-4.zip
